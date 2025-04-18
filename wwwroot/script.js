@@ -2,6 +2,15 @@ let currentCustomer = null;
 let token = null;
 let banCheckInterval = null;
 
+// Loading indicator functions
+function showLoading() {
+    document.getElementById('loading-overlay').classList.remove('hidden');
+}
+
+function hideLoading() {
+    document.getElementById('loading-overlay').classList.add('hidden');
+}
+
 // Tab switching functionality
 document.getElementById('login-tab').addEventListener('click', function () {
     showTab('login');
@@ -77,6 +86,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
 
     if (name && email && password) {
         try {
+            showLoading();
             const response = await fetch('/api/Customer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -98,6 +108,8 @@ document.getElementById('register-form').addEventListener('submit', async functi
             }
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            hideLoading();
         }
     }
 });
@@ -115,6 +127,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
 async function loginCustomer(email, password) {
     try {
+        showLoading();
         const response = await fetch('/api/Customer/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -148,6 +161,8 @@ async function loginCustomer(email, password) {
         }
     } catch (error) {
         console.error('Error:', error);
+    } finally {
+        hideLoading();
     }
 }
 
@@ -157,6 +172,7 @@ document.getElementById('order-form').addEventListener('submit', async function 
 
     if (orderDetails && currentCustomer) {
         try {
+            showLoading();
             const response = await fetch('/api/Order', {
                 method: 'POST',
                 headers: {
@@ -187,6 +203,8 @@ document.getElementById('order-form').addEventListener('submit', async function 
             }
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            hideLoading();
         }
     }
 });
@@ -197,6 +215,7 @@ document.getElementById('delete-order-form').addEventListener('submit', async fu
 
     if (orderId && currentCustomer) {
         try {
+            showLoading();
             const response = await fetch(`/api/Order/${orderId}/customer/${currentCustomer.id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
@@ -214,12 +233,15 @@ document.getElementById('delete-order-form').addEventListener('submit', async fu
             }
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            hideLoading();
         }
     }
 });
 
 async function fetchOrders() {
     try {
+        showLoading();
         const response = await fetch(`/api/Order/customer/${currentCustomer.id}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -238,6 +260,8 @@ async function fetchOrders() {
         }
     } catch (error) {
         console.error('Error:', error);
+    } finally {
+        hideLoading();
     }
 }
 
@@ -284,6 +308,7 @@ async function handleOrderDelete(e) {
 
     if (orderId && currentCustomer) {
         try {
+            showLoading();
             const response = await fetch(`/api/Order/${orderId}/customer/${currentCustomer.id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
@@ -299,6 +324,8 @@ async function handleOrderDelete(e) {
             }
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            hideLoading();
         }
     }
 }
@@ -307,6 +334,7 @@ async function checkBanStatus() {
     if (!currentCustomer || !token) return;
 
     try {
+        showLoading();
         const response = await fetch(`/api/Customer/ban-status`, {
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -348,6 +376,8 @@ async function checkBanStatus() {
         }
     } catch (error) {
         console.error('Error checking ban status:', error);
+    } finally {
+        hideLoading();
     }
 }
 

@@ -17,13 +17,4 @@
     </PackageReference>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
   </ItemGroup>
-
-  <!-- Add this section to copy frontend files during build -->
-  <Target Name="CopyFrontendToWwwroot" BeforeTargets="Build">
-    <ItemGroup>
-      <FrontendFiles Include="..\Frontend\**\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(FrontendFiles)" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>
-
 </Project>
