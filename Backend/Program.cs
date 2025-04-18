@@ -82,6 +82,14 @@ using (var scope = app.Services.CreateScope())
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    // Add HSTS in development for testing but with a short max age
+    app.UseHsts();
+}
+else
+{
+    // In production, use a longer-duration HSTS policy
+    app.UseHsts();
 }
 
 // Add these lines to serve static files
@@ -92,6 +100,19 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors(); // Enable CORS middleware
+
+// Configure HTTPS requirement for all routes
+app.Use(async (context, next) =>
+{
+    if (!context.Request.IsHttps)
+    {
+        context.Response.StatusCode = 403;
+        await context.Response.WriteAsync("HTTPS is required for this application.");
+        return;
+    }
+
+    await next();
+});
 
 app.MapControllers();
 
