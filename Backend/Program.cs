@@ -84,6 +84,10 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+// Add these lines to serve static files
+app.UseDefaultFiles(); // Allows serving default files like index.html
+app.UseStaticFiles();  // Enables static file serving
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
