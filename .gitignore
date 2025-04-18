@@ -1,0 +1,121 @@
+# .NET Core build folders
+Backend/bin/
+Backend/obj/
+Backend/out/
+
+# Visual Studio / Visual Studio Code files
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+.editorconfig
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+# Removing this line to keep launchSettings.json which might be needed
+# Properties/launchSettings.json  
+
+# Build results - made specific to Backend folder
+Backend/[Dd]ebug/
+Backend/[Dd]ebugPublic/
+Backend/[Rr]elease/
+Backend/[Rr]eleases/
+Backend/x64/
+Backend/x86/
+Backend/build/
+Backend/bld/
+Backend/[Bb]in/
+Backend/[Oo]bj/
+Backend/[Oo]ut/
+Backend/msbuild.log
+Backend/msbuild.err
+Backend/msbuild.wrn
+
+# Visual Studio 
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+**/[Ll]ogs/
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.vspscc
+*.vssscc
+.builds
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+**/[Pp]ackages/repositories.config
+*.nuget.props
+*.nuget.targets
+
+# Local development settings - more specific paths
+Backend/appsettings.Development.json
+Backend/appsettings.local.json
+Backend/appsettings.*.Development.json
+!Backend/appsettings.json
+
+# Publish profiles
+Backend/**/PublishProfiles/
+Backend/**/*.pubxml
+Backend/**/*.pubxml.user
+
+# Cache and logs
+*.cache
+*.log
+Backend/logs/
+Backend/testresults/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Frontend related 
+Frontend/node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
